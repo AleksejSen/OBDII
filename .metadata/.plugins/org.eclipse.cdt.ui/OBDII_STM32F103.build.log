@@ -1,0 +1,35 @@
+21:58:32 **** Incremental Build of configuration Debug for project OBDII_STM32F103 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:101:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  101 |    printf("timestamp: %d\r\n", HAL_GetTick());
+      |    ^~~~~~
+../Core/Src/main.c:101:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:24:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   23 | #include "gpio.h"
+  +++ |+#include <stdio.h>
+   24 | 
+../Core/Src/main.c:101:24: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  101 |    printf("timestamp: %d\r\n", HAL_GetTick());
+      |                       ~^       ~~~~~~~~~~~~~
+      |                        |       |
+      |                        int     uint32_t {aka long unsigned int}
+      |                       %ld
+arm-none-eabi-gcc -o "OBDII_STM32F103.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/alex/Documents/Programming/OBDIIProject/OBDII_STM32F103/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="OBDII_STM32F103.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: OBDII_STM32F103.elf
+ 
+arm-none-eabi-objdump -h -S  OBDII_STM32F103.elf  > "OBDII_STM32F103.list"
+arm-none-eabi-objcopy  -O binary  OBDII_STM32F103.elf  "OBDII_STM32F103.bin"
+arm-none-eabi-size   OBDII_STM32F103.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11600	    120	   1736	  13456	   3490	OBDII_STM32F103.elf
+Finished building: default.size.stdout
+ 
+Finished building: OBDII_STM32F103.bin
+ 
+Finished building: OBDII_STM32F103.list
+ 
+
+21:58:33 Build Finished. 0 errors, 3 warnings. (took 429ms)
+
